@@ -9,6 +9,7 @@ public class UzivatelskeRozhrani {
      */
     private String volba = "0";
     private String jmeno;
+    private String prijmeni;
     private int vek;
     private String telefonniCislo;
     /**
@@ -46,22 +47,62 @@ public class UzivatelskeRozhrani {
     }
 
     /**
-     * Getter jména zadaného uživatelem
+     * Setter jména zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
+     */
+    public void setJmeno (){
+        System.out.println("Zadejte jméno pojištěného:");
+        try{
+            jmeno = scanner.nextLine().trim().toLowerCase();
+        }
+        catch (Exception ex) {
+            jeChyba();
+            setJmeno();
+        }
+        for (char c : jmeno.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                jeChyba();
+                setJmeno();
+            }
+        }
+    }
+
+    /**
+     * Getter jména, nahradí první písmeno velkým písmenem
      * @return jméno
      */
-    public String getJmeno (){
-        System.out.println("Zadejte jméno pojištěného:");
-        jmeno = scanner.nextLine().trim().toUpperCase();
+    public String getJmeno () {
+        setJmeno();
+        jmeno = jmeno.substring(0,1).toUpperCase() + jmeno.substring(1);
         return jmeno;
     }
 
     /**
-     * Getter příjmení zadaného uživatelem
+     * Setter příjmení zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
+     */
+    public void setPrijmeni (){
+        System.out.println("Zadejte příjmení pojištěného:");
+        try{
+            prijmeni = scanner.nextLine().trim().toLowerCase();
+        }
+        catch (Exception ex) {
+            jeChyba();
+            setPrijmeni();
+        }
+        for (char c : prijmeni.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                jeChyba();
+                setPrijmeni();
+            }
+        }
+    }
+
+    /**
+     * Getter příjmení, nahradí první písmeno velkým písmenem
      * @return příjmení
      */
-    public String getPrijmeni (){
-        System.out.println("Zadejte příjmení pojištěného:");
-        String prijmeni = scanner.nextLine().trim().toUpperCase();
+    public String getPrijmeni () {
+        setPrijmeni();
+        prijmeni = prijmeni.substring(0, 1).toUpperCase() + prijmeni.substring(1);
         return prijmeni;
     }
 
@@ -69,24 +110,29 @@ public class UzivatelskeRozhrani {
      * Getter telefonního čísla zadaného uživatelem
      * @return telefonní číslo
      */
-    public String getTelefonniCislo () {
+    public void setTelefonniCislo () {
         System.out.println("Zadejte telefonní číslo:");
         try{
-            telefonniCislo = scanner.nextLine().trim();        }
+            telefonniCislo = scanner.nextLine().trim();
+        }
         catch (Exception ex) {
             jeChyba();
-            getTelefonniCislo();
+            setTelefonniCislo();
         }
         telefonniCislo = telefonniCislo.replace(" ", "");
         if (telefonniCislo.length() != 9) {
             if (!telefonniCislo.startsWith("+420")) {
                 jeChyba();
-                getTelefonniCislo();
+                setTelefonniCislo();
             } else if (telefonniCislo.length() != 13) {
                 jeChyba();
-                getTelefonniCislo();
+                setTelefonniCislo();
             }
         } else telefonniCislo = "+420" + telefonniCislo;
+    }
+
+    public String getTelefonniCislo() {
+        setTelefonniCislo();
         return telefonniCislo;
     }
 
@@ -94,22 +140,24 @@ public class UzivatelskeRozhrani {
      * Getter věku, zkontroluje zadání, zda je ve správném formátu, případně si vyžádá jeho opravu
      * @return věk
      */
-    public int getVek () {
+    public void setVek () {
         System.out.println("Zadejte věk:");
         try{
                vek = Integer.parseInt(scanner.nextLine().trim());
         }
         catch (Exception ex) {
                jeChyba();
-               getVek();
+               setVek();
         }
         if (vek < 0 || vek > 100) {
                 jeChyba();
-                getVek();
+                setVek();
         }
+    }
+    public int getVek () {
+        setVek();
         return vek;
     }
-
     /**
      * Vypíše chybovou hlášku při špatném zadání
      * @return
