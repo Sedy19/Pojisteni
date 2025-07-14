@@ -9,6 +9,8 @@ public class UzivatelskeRozhrani {
      */
     private String volba = "0";
     private String jmeno;
+    private int vek;
+    private String telefonniCislo;
     /**
      * Iniciace třídy Scanner pro přijímání vstupů od uživatele
      */
@@ -69,20 +71,53 @@ public class UzivatelskeRozhrani {
      */
     public String getTelefonniCislo () {
         System.out.println("Zadejte telefonní číslo:");
-        String telefonniCislo = scanner.nextLine().trim();
+        try{
+            telefonniCislo = scanner.nextLine().trim();        }
+        catch (Exception ex) {
+            jeChyba();
+            getTelefonniCislo();
+        }
+        telefonniCislo = telefonniCislo.replace(" ", "");
+        if (telefonniCislo.length() != 9) {
+            if (!telefonniCislo.startsWith("+420")) {
+                jeChyba();
+                getTelefonniCislo();
+            } else if (telefonniCislo.length() != 13) {
+                jeChyba();
+                getTelefonniCislo();
+            }
+        } else telefonniCislo = "+420" + telefonniCislo;
         return telefonniCislo;
     }
 
     /**
-     * Getter věku
+     * Getter věku, zkontroluje zadání, zda je ve správném formátu, případně si vyžádá jeho opravu
      * @return věk
      */
     public int getVek () {
         System.out.println("Zadejte věk:");
-        int vek = Integer.parseInt(scanner.nextLine());
+        try{
+               vek = Integer.parseInt(scanner.nextLine().trim());
+        }
+        catch (Exception ex) {
+               jeChyba();
+               getVek();
+        }
+        if (vek < 0 || vek > 100) {
+                jeChyba();
+                getVek();
+        }
         return vek;
     }
 
+    /**
+     * Vypíše chybovou hlášku při špatném zadání
+     * @return
+     */
+    public boolean jeChyba () {
+        System.out.println("Chyba zadání, opakujte zádání ve správném formátu.");
+        return true;
+    }
     /**
      * Vypíše pojištěnce
      * @param pojistenec
@@ -98,8 +133,11 @@ public class UzivatelskeRozhrani {
         System.out.println("\nPro pokračování stiskněte ENTER...");
         scanner.nextLine();
     }
-    public boolean jePrazdna () {
+    /**
+     * Vypíše do konzole, že databáze neobsahuje žádná data
+     * @return true
+     */
+    public void jePrazdna () {
         System.out.println("Databáze zatím neobsahuje žádná data.");
-        return true;
     }
 }

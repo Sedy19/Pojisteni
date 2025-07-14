@@ -18,7 +18,7 @@ public class Main {
                         case "3": databaze.vyhledejPojistence(uzivatelskeRozhrani.getJmeno(), uzivatelskeRozhrani.getPrijmeni());
                         break;
                         /**
-                         * Ukončí program
+                         *Ukončí program
                          */
                         case "4":
                             break;

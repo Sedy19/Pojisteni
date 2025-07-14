@@ -25,12 +25,11 @@ public class Databaze {
     public void pridejPojistence () {
         pojistenci.add(new Pojistenec(rozhrani.getJmeno(), rozhrani.getPrijmeni(), rozhrani.getTelefonniCislo(), rozhrani.getVek()));
     }
-
     /**
-     * Vypíše všechny pojištěnce
+     * Vypíše všechny pojištěnce, pokud je databáze prázdaná, zavolá metodu jePrázdná z Uživatelského rozhraní
      */
     public void vypisPojistence () {
-        if (pojistenci.isEmpty()) {
+        if (jePrazdna()) {
             rozhrani.jePrazdna();
         }
         else {
@@ -41,6 +40,13 @@ public class Databaze {
         rozhrani.cekej();
     }
 
+    /**
+     * Zkontroluje, zda je kolekce prázdná
+     * @return true
+     */
+    public boolean jePrazdna () {
+        return pojistenci.isEmpty();
+    }
 
     /**
      * Vyhledá konkrétního pojištěnce

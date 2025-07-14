@@ -105,7 +105,7 @@ public class Pojistenec {
      */
     @Override
     public String toString () {
-        return getJmeno() + "\t" + getPrijmeni() + "\t" + getVek() + "\t" + getTelefonniCislo();
+        return getJmeno() + "\t\t" + getPrijmeni() + "\t\t" + getVek() + "\t\t" + getTelefonniCislo();
     }
 
 }
