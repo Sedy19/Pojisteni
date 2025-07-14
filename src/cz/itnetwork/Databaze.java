@@ -30,11 +30,17 @@ public class Databaze {
      * Vypíše všechny pojištěnce
      */
     public void vypisPojistence () {
-        for (Pojistenec pojistenec : pojistenci) {
-            rozhrani.vypisPojistence(pojistenec);
+        if (pojistenci.isEmpty()) {
+            rozhrani.jePrazdna();
+        }
+        else {
+            for (Pojistenec pojistenec : pojistenci) {
+                rozhrani.vypisPojistence(pojistenec);
+            }
         }
         rozhrani.cekej();
     }
+
 
     /**
      * Vyhledá konkrétního pojištěnce

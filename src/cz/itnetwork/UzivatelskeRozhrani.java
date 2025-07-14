@@ -98,5 +98,8 @@ public class UzivatelskeRozhrani {
         System.out.println("\nPro pokračování stiskněte ENTER...");
         scanner.nextLine();
     }
-
+    public boolean jePrazdna () {
+        System.out.println("Databáze zatím neobsahuje žádná data.");
+        return true;
+    }
 }
