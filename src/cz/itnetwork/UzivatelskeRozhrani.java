@@ -50,21 +50,28 @@ public class UzivatelskeRozhrani {
      * Setter jména zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
      */
     public void setJmeno (){
+       while (true) {
         System.out.println("Zadejte jméno pojištěného:");
         try{
             jmeno = scanner.nextLine().trim().toLowerCase();
         }
         catch (Exception ex) {
             jeChyba();
-            setJmeno();
+            continue;
         }
+        boolean jePlatne = true;
         for (char c : jmeno.toCharArray()) {
             if (!Character.isLetter(c)) {
-                jeChyba();
-                setJmeno();
+                jePlatne = false;
+                break;
             }
         }
-    }
+        if (!jePlatne || jmeno.isEmpty()) {
+            jeChyba();
+        } else
+            break;
+        }
+       }
 
     /**
      * Getter jména, nahradí první písmeno velkým písmenem
@@ -80,18 +87,25 @@ public class UzivatelskeRozhrani {
      * Setter příjmení zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
      */
     public void setPrijmeni (){
-        System.out.println("Zadejte příjmení pojištěného:");
-        try{
-            prijmeni = scanner.nextLine().trim().toLowerCase();
-        }
-        catch (Exception ex) {
-            jeChyba();
-            setPrijmeni();
-        }
-        for (char c : prijmeni.toCharArray()) {
-            if (!Character.isLetter(c)) {
+        while (true) {
+            System.out.println("Zadejte příjmení pojištěného:");
+            try {
+                prijmeni = scanner.nextLine().trim().toLowerCase();
+            } catch (Exception ex) {
                 jeChyba();
-                setPrijmeni();
+                continue;
+            }
+            boolean jePlatne = true;
+            for (char c : prijmeni.toCharArray()) {
+                if (!Character.isLetter(c)) {
+                    jePlatne = false;
+                    break;
+                }
+            }
+            if (!jePlatne || prijmeni.isEmpty()) {
+                jeChyba();
+            } else {
+                break;
             }
         }
     }
