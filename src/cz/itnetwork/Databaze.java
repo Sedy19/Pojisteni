@@ -66,9 +66,13 @@ public class Databaze {
         /**
          * Vypíše všechny objekty z kolekce
          */
-        for (Pojistenec pojistenec : nalezeni) {
-        rozhrani.vypisPojistence(pojistenec);
+        if (nalezeni.isEmpty()) {
+            rozhrani.jePrazdna();
+        } else {
+            for (Pojistenec pojistenec : nalezeni) {
+            rozhrani.vypisPojistence(pojistenec);
             }
+        }
     }
 
 
