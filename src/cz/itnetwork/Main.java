@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        UzivatelskeRozhrani uzivatelskeRozhrani = new UzivatelskeRozhrani(scanner);
+        SpravcePojistence spravcePojistence = new SpravcePojistence();
+        UzivatelskeRozhrani uzivatelskeRozhrani = new UzivatelskeRozhrani(scanner, spravcePojistence);
         Databaze databaze = new Databaze(uzivatelskeRozhrani);
-        /**
-         * Hlavní cyklus programu zkontroluje zadanou volbu a reaguje na ní odpovídající akcí
-         */
+
+        // Hlavní cyklus programu zkontroluje zadanou volbu a reaguje na ní odpovídající akcí
+
         while (!uzivatelskeRozhrani.getVolba().equals("4")) {
                 uzivatelskeRozhrani.vykresliNabidku();
                 uzivatelskeRozhrani.setVolba();
@@ -20,9 +21,7 @@ public class Main {
                         break;
                         case "3": databaze.vyhledejPojistence(uzivatelskeRozhrani.getJmeno(), uzivatelskeRozhrani.getPrijmeni());
                         break;
-                        /**
-                         *Ukončí program
-                         */
+                        //Ukončí program
                         case "4":
                             break;
                         default: uzivatelskeRozhrani.vypisChybuZadani();

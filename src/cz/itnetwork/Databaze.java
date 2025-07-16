@@ -56,18 +56,14 @@ public class Databaze {
      * @param prijmeni příjmení hledaného
      */
     public void vyhledejPojistence (String jmeno, String prijmeni) {
-        /**
-         * Inicializace kolekce pro objekty odpovídající hledaným parametrům
-         */
+        //Inicializace kolekce pro objekty odpovídající hledaným parametrům
         ArrayList<Pojistenec> nalezeni = new ArrayList<>();
         for (Pojistenec pojistenec : pojistenci) {
             if ((pojistenec.getJmeno().equals(jmeno)) && pojistenec.getPrijmeni().equals(prijmeni)) {
                 nalezeni.add(pojistenec);
             }
         }
-        /**
-         * Vypíše všechny objekty z kolekce
-         */
+        //Vypíše všechny objekty z kolekce
         if (nalezeni.isEmpty()) {
             rozhrani.vypisPrazdnouDatabazi();
         } else {

@@ -31,7 +31,7 @@ public class UzivatelskeRozhrani {
     /**
      * Inicializace instance třídy SprávcePojištěnce
      */
-    private final SpravcePojistence spravcePojistence = new SpravcePojistence(scanner);
+    private SpravcePojistence spravcePojistence;
     /**
      * Pomocná proměnná pro načtení textového řetězce
      */
@@ -43,10 +43,11 @@ public class UzivatelskeRozhrani {
 
     /**
      * Konstruktor pro předání instance třídy Scanner
-     * @param scanner
+     * @param scanner instance třídy Scanner
      */
-    public UzivatelskeRozhrani(Scanner scanner) {
+    public UzivatelskeRozhrani(Scanner scanner, SpravcePojistence spravcePojistence) {
         this.scanner = scanner;
+        this.spravcePojistence = spravcePojistence;
     }
     /**
      * Vykreslí do konzole hlavní nabídku příkazů
@@ -121,7 +122,6 @@ public class UzivatelskeRozhrani {
 
     /**
      * Setter telefonního čísla
-     * @return telefonní číslo
      */
     public void setTelefonniCislo () {
        while (true) {
@@ -138,7 +138,7 @@ public class UzivatelskeRozhrani {
 
     /**
      * Getter telefonního čísla, zformátuje číslo do požadováného formátu
-     * @return
+     * @return telefonní číslo
      */
     public String getTelefonniCislo() {
         setTelefonniCislo();
@@ -148,7 +148,6 @@ public class UzivatelskeRozhrani {
 
     /**
      * Getter věku, zkontroluje zadání, zda je ve správném formátu, případně si vyžádá jeho opravu
-     * @return věk
      */
     public void setVek () {
         while (true) {
@@ -173,14 +172,13 @@ public class UzivatelskeRozhrani {
     }
     /**
      * Vypíše chybovou hlášku při špatném zadání a vyzve k novému zadání
-     * @return hodnota true;
      */
     public void vypisChybuZadani() {
         System.out.println("Chyba zadání, opakujte zádání ve správném formátu.");
     }
     /**
      * Vypíše pojištěnce
-     * @param pojistenec
+     * @param pojistenec pojištěná osoba z databáze
      */
     public void vypisPojistence (Pojistenec pojistenec) {
         System.out.println(pojistenec);
@@ -194,7 +192,6 @@ public class UzivatelskeRozhrani {
     }
     /**
      * Vypíše do konzole, že databáze neobsahuje žádná data
-     * @return hodnota true
      */
     public void vypisPrazdnouDatabazi() {
         System.out.println("Databáze zatím neobsahuje žádná data.");

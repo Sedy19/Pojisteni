@@ -23,10 +23,10 @@ public class Pojistenec {
 
     /**
      * Konstruktor pojištěnce
-     * @param jmeno
-     * @param prijmeni
-     * @param telefonniCislo
-     * @param vek
+     * @param jmeno jméno
+     * @param prijmeni příjmení
+     * @param telefonniCislo telefonní číslo
+     * @param vek věk
      */
     public Pojistenec (String jmeno, String prijmeni, String telefonniCislo, int vek) {
         this.jmeno = jmeno;
@@ -42,15 +42,6 @@ public class Pojistenec {
     public String getJmeno() {
         return jmeno;
     }
-
-    /**
-     * Setter jména
-     * @param jmeno
-     */
-    public void setJmeno(String jmeno) {
-        this.jmeno = jmeno;
-    }
-
     /**
      * Getter příjmení
      * @return příjmení
@@ -58,15 +49,6 @@ public class Pojistenec {
     public String getPrijmeni() {
         return prijmeni;
     }
-
-    /**
-     * Setter příjmení
-     * @param prijmeni
-     */
-    public void setPrijmeni(String prijmeni) {
-        this.prijmeni = prijmeni;
-    }
-
     /**
      * Getter telefonního čísla
      * @return telefonní číslo
@@ -76,29 +58,12 @@ public class Pojistenec {
     }
 
     /**
-     * Setter telefonního čísla
-     * @param telefonniCislo
-     */
-    public void setTelefonniCislo(String telefonniCislo) {
-        this.telefonniCislo = telefonniCislo;
-    }
-
-    /**
      * Getter věku
      * @return věk
      */
     public int getVek() {
         return vek;
     }
-
-    /**
-     * Setter věku
-     * @param vek
-     */
-    public void setVek(int vek) {
-        this.vek = vek;
-    }
-
     /**
      * Textová reprezentace třídy
      * @return jméno, příjmení, věk a telefonní číslo oddělené tabulátory
