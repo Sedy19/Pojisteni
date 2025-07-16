@@ -8,14 +8,46 @@ public class UzivatelskeRozhrani {
      * Volba z nabídky příkazů
      */
     private String volba = "0";
+    /**
+     * Jméno
+     */
     private String jmeno;
+    /**
+     * Příjmení
+     */
     private String prijmeni;
+    /**
+     * Věk
+     */
     private int vek;
+    /**
+     * Telefonní číslo
+     */
     private String telefonniCislo;
     /**
-     * Iniciace třídy Scanner pro přijímání vstupů od uživatele
+     * Scanner pro načítání hodnot z konzole
      */
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+    /**
+     * Inicializace instance třídy SprávcePojištěnce
+     */
+    private final SpravcePojistence spravcePojistence = new SpravcePojistence(scanner);
+    /**
+     * Pomocná proměnná pro načtení textového řetězce
+     */
+    private String vstupniText;
+    /**
+     * Pomocná proměnná pro načtení celého čísla
+     */
+    private Integer celeCislo;
+
+    /**
+     * Konstruktor pro předání instance třídy Scanner
+     * @param scanner
+     */
+    public UzivatelskeRozhrani(Scanner scanner) {
+        this.scanner = scanner;
+    }
     /**
      * Vykreslí do konzole hlavní nabídku příkazů
      */
@@ -24,12 +56,11 @@ public class UzivatelskeRozhrani {
         System.out.println("Vyberte si akci:");
         System.out.println("1 - přidat nového pojištěného\n2 - vypsat všechny pojištěné\n3 - vyhledat pojištěného\n4 - konec");
     }
-
     /**
      * Setter čísla volby
      */
     public void setVolba () {
-        this.volba = scanner.nextLine();
+        this.volba = nactiText();
     }
     /**
      * Getter čísla volby
@@ -38,71 +69,39 @@ public class UzivatelskeRozhrani {
     public String getVolba() {
         return volba;
     }
-
-    /**
-     * Vyžádá nové zadání vybraného příkazu, pokud byl zadán chybně
-     */
-    public void opravVolbu () {
-        System.out.println("Chyba zadání, prosím zadejte znovu.");
-    }
-
     /**
      * Setter jména zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
      */
     public void setJmeno (){
        while (true) {
-        System.out.println("Zadejte jméno pojištěného:");
-        try{
-            jmeno = scanner.nextLine().trim().toLowerCase();
-        }
-        catch (Exception ex) {
-            jeChyba();
-            continue;
-        }
-        boolean jePlatne = true;
-        for (char c : jmeno.toCharArray()) {
-            if (!Character.isLetter(c)) {
-                jePlatne = false;
+            System.out.println("Zadejte jméno pojištěného:");
+            jmeno = nactiText();
+            if (!spravcePojistence.jeValidniJmeno(jmeno)) {
+                jeChyba();
+            }
+            else  {
                 break;
             }
-        }
-        if (!jePlatne || jmeno.isEmpty()) {
-            jeChyba();
-        } else
-            break;
-        }
        }
-
+    }
     /**
-     * Getter jména, nahradí první písmeno velkým písmenem
+     * Getter jména zformátuje jméno do požadovaného tvaru
      * @return jméno
      */
     public String getJmeno () {
         setJmeno();
-        jmeno = jmeno.substring(0,1).toUpperCase() + jmeno.substring(1);
+        jmeno = spravcePojistence.zformatujJmeno(jmeno);
         return jmeno;
     }
 
     /**
      * Setter příjmení zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
      */
-    public void setPrijmeni (){
+    public void setPrijmeni () {
         while (true) {
             System.out.println("Zadejte příjmení pojištěného:");
-            try {
-                prijmeni = scanner.nextLine().trim().toLowerCase();
-            } catch (Exception ex) {
-                jeChyba();
-                continue;
-            }
-            boolean jePlatne = true;
-            for (char c : prijmeni.toCharArray()) {
-                if (!Character.isLetter(c)) {
-                    jePlatne = false;
-                    break;
-                }
-            }
-            if (!jePlatne || prijmeni.isEmpty()) {
+            prijmeni = nactiText();
+            if (!spravcePojistence.jeValidniJmeno(prijmeni)) {
                 jeChyba();
             } else {
                 break;
@@ -111,42 +110,39 @@ public class UzivatelskeRozhrani {
     }
 
     /**
-     * Getter příjmení, nahradí první písmeno velkým písmenem
+     * Getter příjmení zformátuje příjmení do požadovaného tvaru
      * @return příjmení
      */
     public String getPrijmeni () {
         setPrijmeni();
-        prijmeni = prijmeni.substring(0, 1).toUpperCase() + prijmeni.substring(1);
+        prijmeni = spravcePojistence.zformatujJmeno(prijmeni);
         return prijmeni;
     }
 
     /**
-     * Getter telefonního čísla zadaného uživatelem
+     * Setter telefonního čísla
      * @return telefonní číslo
      */
     public void setTelefonniCislo () {
-        System.out.println("Zadejte telefonní číslo:");
-        try{
-            telefonniCislo = scanner.nextLine().trim();
-        }
-        catch (Exception ex) {
-            jeChyba();
-            setTelefonniCislo();
-        }
-        telefonniCislo = telefonniCislo.replace(" ", "");
-        if (telefonniCislo.length() != 9) {
-            if (!telefonniCislo.startsWith("+420")) {
+       while (true) {
+           System.out.println("Zadejte telefonní číslo:");
+           telefonniCislo = nactiText();
+           if (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo)) {
                 jeChyba();
-                setTelefonniCislo();
-            } else if (telefonniCislo.length() != 13) {
-                jeChyba();
-                setTelefonniCislo();
-            }
-        } else telefonniCislo = "+420" + telefonniCislo;
+           }
+           else {
+               break;
+           }
+       }
     }
 
+    /**
+     * Getter telefonního čísla, zformátuje číslo do požadováného formátu
+     * @return
+     */
     public String getTelefonniCislo() {
         setTelefonniCislo();
+        telefonniCislo = spravcePojistence.zformatujTelefonniCislo(telefonniCislo);
         return telefonniCislo;
     }
 
@@ -155,26 +151,29 @@ public class UzivatelskeRozhrani {
      * @return věk
      */
     public void setVek () {
-        System.out.println("Zadejte věk:");
-        try{
-               vek = Integer.parseInt(scanner.nextLine().trim());
-        }
-        catch (Exception ex) {
-               jeChyba();
-               setVek();
-        }
-        if (vek < 0 || vek > 100) {
+        while (true) {
+            System.out.println("Zadejte věk:");
+            vek = nactiCeleCislo();
+            if (!spravcePojistence.zvalidujVek(vek)) {
                 jeChyba();
-                setVek();
+            }
+            else {
+                break;
+            }
         }
     }
+
+    /**
+     * Gette věku
+     * @return věk
+     */
     public int getVek () {
         setVek();
         return vek;
     }
     /**
-     * Vypíše chybovou hlášku při špatném zadání
-     * @return
+     * Vypíše chybovou hlášku při špatném zadání a vyzve k novému zadání
+     * @return hodnota true;
      */
     public boolean jeChyba () {
         System.out.println("Chyba zadání, opakujte zádání ve správném formátu.");
@@ -187,19 +186,47 @@ public class UzivatelskeRozhrani {
     public void vypisPojistence (Pojistenec pojistenec) {
         System.out.println(pojistenec);
     }
-
     /**
      * Zastaví program dokud uživatel nestiskne Enter
      */
-    public void cekej () {
+    public void pozastavProgram() {
         System.out.println("\nPro pokračování stiskněte ENTER...");
         scanner.nextLine();
     }
     /**
      * Vypíše do konzole, že databáze neobsahuje žádná data
-     * @return true
+     * @return hodnota true
      */
-    public void jePrazdna () {
+    public void vypisPrazdnouDatabazi() {
         System.out.println("Databáze zatím neobsahuje žádná data.");
+    }
+
+    /**
+     * Načte z konzole textový řetězec
+     * @return textový řetězec
+     */
+    public String nactiText () {
+        try {
+            vstupniText = scanner.nextLine().trim().toLowerCase();
+        } catch (Exception ex) {
+            jeChyba();
+        }
+        return vstupniText;
+    }
+    /**
+     * Načte z konzole celé číslo
+     * @return celé číslo
+     */
+    public Integer nactiCeleCislo () {
+        try{
+            celeCislo = Integer.parseInt(scanner.nextLine().trim());
+        }
+        catch (Exception ex) {
+            jeChyba();
+        }
+        return celeCislo;
+    }
+    public void vypisHlavickuDatabaze () {
+        System.out.println("----------------------------------------------------\nJméno\t\tPříjmení\t\tVěk\t\tTelefonní číslo\n----------------------------------------------------");
     }
 }

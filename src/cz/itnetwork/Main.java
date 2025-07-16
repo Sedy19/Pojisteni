@@ -1,9 +1,12 @@
 package cz.itnetwork;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Databaze databaze = new Databaze();
-        UzivatelskeRozhrani uzivatelskeRozhrani = new UzivatelskeRozhrani();
+        Scanner scanner = new Scanner(System.in);
+        UzivatelskeRozhrani uzivatelskeRozhrani = new UzivatelskeRozhrani(scanner);
+        Databaze databaze = new Databaze(uzivatelskeRozhrani);
         /**
          * Hlavní cyklus programu zkontroluje zadanou volbu a reaguje na ní odpovídající akcí
          */
@@ -22,7 +25,7 @@ public class Main {
                          */
                         case "4":
                             break;
-                        default: uzivatelskeRozhrani.opravVolbu();
+                        default: uzivatelskeRozhrani.jeChyba();
                     }
                 }
 

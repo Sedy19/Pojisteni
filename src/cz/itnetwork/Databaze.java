@@ -12,11 +12,12 @@ public class Databaze {
     /**
      * Inicializace uživatelského rozhraní
       */
-    private UzivatelskeRozhrani rozhrani = new UzivatelskeRozhrani();
+    private UzivatelskeRozhrani rozhrani;
     /**
      * Inicializace nové kolekce
      */
-    public Databaze () {
+    public Databaze (UzivatelskeRozhrani rozhrani) {
+        this.rozhrani = rozhrani;
         pojistenci = new ArrayList<>();
     }
     /**
@@ -30,14 +31,15 @@ public class Databaze {
      */
     public void vypisPojistence () {
         if (jePrazdna()) {
-            rozhrani.jePrazdna();
+            rozhrani.vypisPrazdnouDatabazi();
         }
         else {
+            rozhrani.vypisHlavickuDatabaze();
             for (Pojistenec pojistenec : pojistenci) {
                 rozhrani.vypisPojistence(pojistenec);
             }
         }
-        rozhrani.cekej();
+        rozhrani.pozastavProgram();
     }
 
     /**
@@ -67,13 +69,12 @@ public class Databaze {
          * Vypíše všechny objekty z kolekce
          */
         if (nalezeni.isEmpty()) {
-            rozhrani.jePrazdna();
+            rozhrani.vypisPrazdnouDatabazi();
         } else {
+            rozhrani.vypisHlavickuDatabaze();
             for (Pojistenec pojistenec : nalezeni) {
             rozhrani.vypisPojistence(pojistenec);
             }
         }
     }
-
-
 }
