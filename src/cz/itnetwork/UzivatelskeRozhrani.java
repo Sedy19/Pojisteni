@@ -77,7 +77,7 @@ public class UzivatelskeRozhrani {
             System.out.println("Zadejte jméno pojištěného:");
             jmeno = nactiText();
             if (!spravcePojistence.jeValidniJmeno(jmeno)) {
-                jeChyba();
+                vypisChybuZadani();
             }
             else  {
                 break;
@@ -102,7 +102,7 @@ public class UzivatelskeRozhrani {
             System.out.println("Zadejte příjmení pojištěného:");
             prijmeni = nactiText();
             if (!spravcePojistence.jeValidniJmeno(prijmeni)) {
-                jeChyba();
+                vypisChybuZadani();
             } else {
                 break;
             }
@@ -128,7 +128,7 @@ public class UzivatelskeRozhrani {
            System.out.println("Zadejte telefonní číslo:");
            telefonniCislo = nactiText();
            if (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo)) {
-                jeChyba();
+                vypisChybuZadani();
            }
            else {
                break;
@@ -155,7 +155,7 @@ public class UzivatelskeRozhrani {
             System.out.println("Zadejte věk:");
             vek = nactiCeleCislo();
             if (!spravcePojistence.zvalidujVek(vek)) {
-                jeChyba();
+                vypisChybuZadani();
             }
             else {
                 break;
@@ -175,9 +175,8 @@ public class UzivatelskeRozhrani {
      * Vypíše chybovou hlášku při špatném zadání a vyzve k novému zadání
      * @return hodnota true;
      */
-    public boolean jeChyba () {
+    public void vypisChybuZadani() {
         System.out.println("Chyba zadání, opakujte zádání ve správném formátu.");
-        return true;
     }
     /**
      * Vypíše pojištěnce
@@ -209,7 +208,7 @@ public class UzivatelskeRozhrani {
         try {
             vstupniText = scanner.nextLine().trim().toLowerCase();
         } catch (Exception ex) {
-            jeChyba();
+            vypisChybuZadani();
         }
         return vstupniText;
     }
@@ -222,7 +221,7 @@ public class UzivatelskeRozhrani {
             celeCislo = Integer.parseInt(scanner.nextLine().trim());
         }
         catch (Exception ex) {
-            jeChyba();
+            vypisChybuZadani();
         }
         return celeCislo;
     }

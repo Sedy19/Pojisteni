@@ -25,7 +25,7 @@ public class Main {
                          */
                         case "4":
                             break;
-                        default: uzivatelskeRozhrani.jeChyba();
+                        default: uzivatelskeRozhrani.vypisChybuZadani();
                     }
                 }
 
