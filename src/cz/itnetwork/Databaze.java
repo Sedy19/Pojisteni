@@ -15,13 +15,14 @@ public class Databaze {
     private UzivatelskeRozhrani rozhrani;
     /**
      * Inicializace nové kolekce
+     * @param rozhrani předá instanci uživatelského rozhraní
      */
     public Databaze (UzivatelskeRozhrani rozhrani) {
         this.rozhrani = rozhrani;
         pojistenci = new ArrayList<>();
     }
     /**
-     * Přidá nového pojištěnce
+     * Přidá nového pojištěnce do databáze
      */
     public void pridejPojistence () {
         pojistenci.add(new Pojistenec(rozhrani.getJmeno(), rozhrani.getPrijmeni(), rozhrani.getTelefonniCislo(), rozhrani.getVek()));
@@ -44,14 +45,14 @@ public class Databaze {
 
     /**
      * Zkontroluje, zda je kolekce prázdná
-     * @return true
+     * @return true pokud je databáze pojištěnců prázdná
      */
     public boolean jePrazdna () {
         return pojistenci.isEmpty();
     }
 
     /**
-     * Vyhledá konkrétního pojištěnce
+     * Vyhledá konkrétního pojištěnce podle jména a příjmení
      * @param jmeno jméno hledaného
      * @param prijmeni příjmení hledaného
      */

@@ -42,7 +42,7 @@ public class UzivatelskeRozhrani {
     private Integer celeCislo;
 
     /**
-     * Konstruktor pro předání instance třídy Scanner
+     * Konstruktor pro předání instancí třídy Scanner a třídy Správce pojištění
      * @param scanner instance třídy Scanner
      */
     public UzivatelskeRozhrani(Scanner scanner, SpravcePojistence spravcePojistence) {
@@ -58,16 +58,16 @@ public class UzivatelskeRozhrani {
         System.out.println("1 - přidat nového pojištěného\n2 - vypsat všechny pojištěné\n3 - vyhledat pojištěného\n4 - konec");
     }
     /**
-     * Setter čísla volby
+     * Setter čísla zvolené akce z hlavní nabídky
      */
-    public void setVolba () {
+    public void setVolbaAkce() {
         this.volba = nactiText();
     }
     /**
-     * Getter čísla volby
-     * @return vrátí číslo vybraného příkazu
+     * Getter čísla zvolené akce z hlavní nabídky
+     * @return vrátí číslo vybraného příkazu ve formátu String
      */
-    public String getVolba() {
+    public String getVolbaAkce() {
         return volba;
     }
     /**
@@ -87,7 +87,7 @@ public class UzivatelskeRozhrani {
     }
     /**
      * Getter jména zformátuje jméno do požadovaného tvaru
-     * @return jméno
+     * @return jméno pojištěnce ve formátu String s velkým písmenem na začátku
      */
     public String getJmeno () {
         setJmeno();
@@ -112,7 +112,7 @@ public class UzivatelskeRozhrani {
 
     /**
      * Getter příjmení zformátuje příjmení do požadovaného tvaru
-     * @return příjmení
+     * @return příjmení ve formátu String s velkým prvním písmenem
      */
     public String getPrijmeni () {
         setPrijmeni();
@@ -121,7 +121,7 @@ public class UzivatelskeRozhrani {
     }
 
     /**
-     * Setter telefonního čísla
+     * Setter telefonního čísla, zkontroluje formát telefonního čísla, případně vyžádá nové zadání
      */
     public void setTelefonniCislo () {
        while (true) {
@@ -138,7 +138,7 @@ public class UzivatelskeRozhrani {
 
     /**
      * Getter telefonního čísla, zformátuje číslo do požadováného formátu
-     * @return telefonní číslo
+     * @return telefonní číslo typu String ve formátu s českou předvolbou +420*********
      */
     public String getTelefonniCislo() {
         setTelefonniCislo();
@@ -163,15 +163,15 @@ public class UzivatelskeRozhrani {
     }
 
     /**
-     * Gette věku
-     * @return věk
+     * Getter věku pojištěnce
+     * @return věk pojištěnce v typu int
      */
     public int getVek () {
         setVek();
         return vek;
     }
     /**
-     * Vypíše chybovou hlášku při špatném zadání a vyzve k novému zadání
+     * Vypíše chybovou hlášku při špatném zadání uživatelem a vyzve k novému zadání
      */
     public void vypisChybuZadani() {
         System.out.println("Chyba zadání, opakujte zádání ve správném formátu.");
@@ -199,7 +199,7 @@ public class UzivatelskeRozhrani {
 
     /**
      * Načte z konzole textový řetězec
-     * @return textový řetězec
+     * @return textový řetězec zadaný uživatelem
      */
     public String nactiText () {
         try {
@@ -211,7 +211,7 @@ public class UzivatelskeRozhrani {
     }
     /**
      * Načte z konzole celé číslo
-     * @return celé číslo
+     * @return celé číslo zadné uživatelem
      */
     public Integer nactiCeleCislo () {
         try{
@@ -222,6 +222,10 @@ public class UzivatelskeRozhrani {
         }
         return celeCislo;
     }
+
+    /**
+     * Vypíše do konzole hlavičku databáze
+     */
     public void vypisHlavickuDatabaze () {
         System.out.println("----------------------------------------------------\nJméno\t\tPříjmení\t\tVěk\t\tTelefonní číslo\n----------------------------------------------------");
     }

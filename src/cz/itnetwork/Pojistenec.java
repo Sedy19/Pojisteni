@@ -23,10 +23,10 @@ public class Pojistenec {
 
     /**
      * Konstruktor pojištěnce
-     * @param jmeno jméno
-     * @param prijmeni příjmení
-     * @param telefonniCislo telefonní číslo
-     * @param vek věk
+     * @param jmeno jméno pojištěného
+     * @param prijmeni příjmení pojištěného
+     * @param telefonniCislo telefonní číslo pojištěného
+     * @param vek věk pojištěného
      */
     public Pojistenec (String jmeno, String prijmeni, String telefonniCislo, int vek) {
         this.jmeno = jmeno;
@@ -36,37 +36,37 @@ public class Pojistenec {
     }
 
     /**
-     * Getter jména
-     * @return jméno
+     * Getter jména pojištěnce
+     * @return jméno pojištěnce typu String
      */
     public String getJmeno() {
         return jmeno;
     }
     /**
-     * Getter příjmení
-     * @return příjmení
+     * Getter příjmení pojištěnce
+     * @return příjmení pojištěnce typu String
      */
     public String getPrijmeni() {
         return prijmeni;
     }
     /**
-     * Getter telefonního čísla
-     * @return telefonní číslo
+     * Getter telefonního čísla pojištěnce
+     * @return telefonní číslo pojištěnce typu string
      */
     public String getTelefonniCislo() {
         return telefonniCislo;
     }
 
     /**
-     * Getter věku
-     * @return věk
+     * Getter věku pojištěnce
+     * @return věk pojištěnce typu int
      */
     public int getVek() {
         return vek;
     }
     /**
      * Textová reprezentace třídy
-     * @return jméno, příjmení, věk a telefonní číslo oddělené tabulátory
+     * @return jméno, příjmení, věk a telefonní číslo pojištěnce oddělené pomocí tabulátorů
      */
     @Override
     public String toString () {

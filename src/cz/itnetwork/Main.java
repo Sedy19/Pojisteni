@@ -11,10 +11,10 @@ public class Main {
 
         // Hlavní cyklus programu zkontroluje zadanou volbu a reaguje na ní odpovídající akcí
 
-        while (!uzivatelskeRozhrani.getVolba().equals("4")) {
+        while (!uzivatelskeRozhrani.getVolbaAkce().equals("4")) {
                 uzivatelskeRozhrani.vykresliNabidku();
-                uzivatelskeRozhrani.setVolba();
-                    switch (uzivatelskeRozhrani.getVolba()) {
+                uzivatelskeRozhrani.setVolbaAkce();
+                    switch (uzivatelskeRozhrani.getVolbaAkce()) {
                         case "1": databaze.pridejPojistence();
                         break;
                         case "2": databaze.vypisPojistence();

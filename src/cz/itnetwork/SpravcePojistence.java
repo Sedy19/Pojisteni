@@ -7,7 +7,7 @@ public class SpravcePojistence {
     private boolean jePlatne;
 
     /**
-     * Zkontroluje zda je jméno zadané ve správném formátu
+     * Zkontroluje zda je jméno zadané ve správném formátu - neobsahuje mezery, číslice ani jiné bílé znaky
      * @param jmeno jméno
      * @return hodnota true pokud je jméno ve správném formátu
      */
@@ -24,8 +24,8 @@ public class SpravcePojistence {
 
     /**
      * Zformátuje jméno tak, aby bylo na začátku velké písmeno
-     * @param jmeno jméno
-     * @return jméno
+     * @param jmeno jméno pojištěnce
+     * @return jméno pojištěnce typu String s prvním písmenem velkým
      */
     public String zformatujJmeno(String jmeno) {
         jmeno = jmeno.substring(0,1).toUpperCase() + jmeno.substring(1);
@@ -33,7 +33,7 @@ public class SpravcePojistence {
     }
 
     /**
-     * Zkontroluje zadání telefonního čísla
+     * Zkontroluje zadání telefonního čísla - musí mít 9 znaků, v případě zadání předvolby musí být tato česká +420 a číslo musí mít celkem 13 znaků
      * @param telefonniCislo telefonní číslo
      * @return hodnota true pokud je číslo validní
      */
@@ -53,7 +53,7 @@ public class SpravcePojistence {
     /**
      * Zformátuje telefonní číslo do požadovaného formátu s českou předvolbou
      * @param telefonniCislo telefonní číslo
-     * @return telefonní číslo
+     * @return telefonní číslo typu String ve formátu +420*********
      */
     public String zformatujTelefonniCislo (String telefonniCislo) {
         if (!telefonniCislo.startsWith("+420")) {
