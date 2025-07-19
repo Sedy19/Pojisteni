@@ -14,19 +14,21 @@ public class Main {
         while (!uzivatelskeRozhrani.getVolbaAkce().equals("4")) {
                 uzivatelskeRozhrani.vykresliNabidku();
                 uzivatelskeRozhrani.setVolbaAkce();
-                    switch (uzivatelskeRozhrani.getVolbaAkce()) {
-                        case "1": databaze.pridejPojistence();
+                switch (uzivatelskeRozhrani.getVolbaAkce()) {
+                    case "1": databaze.pridejPojistence();
                         break;
-                        case "2": databaze.vypisPojistence();
+                    case "2": uzivatelskeRozhrani.vypisKolekci(databaze.vypisPojistence());
+                        uzivatelskeRozhrani.pozastavProgram();
                         break;
-                        case "3": databaze.vyhledejPojistence(uzivatelskeRozhrani.getJmeno(), uzivatelskeRozhrani.getPrijmeni());
+                    case "3": uzivatelskeRozhrani.vypisKolekci(databaze.vyhledejPojistence(uzivatelskeRozhrani.getJmeno(), uzivatelskeRozhrani.getPrijmeni()));
+                        uzivatelskeRozhrani.pozastavProgram();
                         break;
-                        //Ukončí program
-                        case "4":
-                            break;
-                        default: uzivatelskeRozhrani.vypisChybuZadani();
+                    //Ukončí program
+                    case "4":
+                        break;
+                    default: uzivatelskeRozhrani.vypisChybuZadani();
                     }
-                }
+        }
 
 
 

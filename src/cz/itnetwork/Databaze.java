@@ -28,35 +28,12 @@ public class Databaze {
         pojistenci.add(new Pojistenec(rozhrani.getJmeno(), rozhrani.getPrijmeni(), rozhrani.getTelefonniCislo(), rozhrani.getVek()));
     }
     /**
-     * Vypíše všechny pojištěnce, pokud je databáze prázdaná, zavolá metodu jePrázdná z Uživatelského rozhraní
-     */
-    public void vypisPojistence () {
-        if (jePrazdna()) {
-            rozhrani.vypisPrazdnouDatabazi();
-        }
-        else {
-            rozhrani.vypisHlavickuDatabaze();
-            for (Pojistenec pojistenec : pojistenci) {
-                rozhrani.vypisPojistence(pojistenec);
-            }
-        }
-        rozhrani.pozastavProgram();
-    }
-
-    /**
-     * Zkontroluje, zda je kolekce prázdná
-     * @return true pokud je databáze pojištěnců prázdná
-     */
-    public boolean jePrazdna () {
-        return pojistenci.isEmpty();
-    }
-
-    /**
      * Vyhledá konkrétního pojištěnce podle jména a příjmení
      * @param jmeno jméno hledaného
      * @param prijmeni příjmení hledaného
+     * @return nalezeni vrátí kolekci nalezených pojištěnců
      */
-    public void vyhledejPojistence (String jmeno, String prijmeni) {
+    public ArrayList<Pojistenec> vyhledejPojistence (String jmeno, String prijmeni) {
         //Inicializace kolekce pro objekty odpovídající hledaným parametrům
         ArrayList<Pojistenec> nalezeni = new ArrayList<>();
         for (Pojistenec pojistenec : pojistenci) {
@@ -64,14 +41,13 @@ public class Databaze {
                 nalezeni.add(pojistenec);
             }
         }
-        //Vypíše všechny objekty z kolekce
-        if (nalezeni.isEmpty()) {
-            rozhrani.vypisPrazdnouDatabazi();
-        } else {
-            rozhrani.vypisHlavickuDatabaze();
-            for (Pojistenec pojistenec : nalezeni) {
-            rozhrani.vypisPojistence(pojistenec);
-            }
-        }
+        return nalezeni;
+    }
+    /**
+     * Vypíše všechny pojištěnce
+     * @return pojistenci vrátí celou kolekci pojištěnců
+     */
+    public ArrayList<Pojistenec> vypisPojistence () {
+        return pojistenci;
     }
 }

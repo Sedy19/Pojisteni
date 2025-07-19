@@ -3,7 +3,7 @@ package cz.itnetwork;
 /**
  * Tato třída reprezentuje pojištěnou osobu
  */
-public class Pojistenec {
+    public class Pojistenec {
     /**
      * Jméno
      */

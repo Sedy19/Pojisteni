@@ -1,4 +1,5 @@
 package cz.itnetwork;
+import java.util.Collection;
 import java.util.Scanner;
 /**
  * Třída pro komunikaci s uživatelem
@@ -191,12 +192,19 @@ public class UzivatelskeRozhrani {
         scanner.nextLine();
     }
     /**
-     * Vypíše do konzole, že databáze neobsahuje žádná data
+     * Vypíše do konzole kolekci pojištěnců a počet nalezených výsledků, v případě že je kolekce prázdná, vypíše, že je prázdná
      */
-    public void vypisPrazdnouDatabazi() {
-        System.out.println("Databáze zatím neobsahuje žádná data.");
+    public void vypisKolekci (Collection<Pojistenec> pojistenci) {
+        if (pojistenci.isEmpty()) {
+            System.out.println("Databáze zatím neobsahuje žádná data.");
+        } else {
+            System.out.printf("\nPočet nalezených výsledků: %d\n\n", pojistenci.size());
+            vypisHlavickuDatabaze();
+            for (Pojistenec pojistenec : pojistenci) {
+                vypisPojistence(pojistenec);
+            }
+        }
     }
-
     /**
      * Načte z konzole textový řetězec
      * @return textový řetězec zadaný uživatelem
