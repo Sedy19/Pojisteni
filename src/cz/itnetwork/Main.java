@@ -16,6 +16,8 @@ public class Main {
                 uzivatelskeRozhrani.setVolbaAkce();
                 switch (uzivatelskeRozhrani.getVolbaAkce()) {
                     case "1": databaze.pridejPojistence();
+                        uzivatelskeRozhrani.vypisPotvrzeniUlozeniDat();
+                        uzivatelskeRozhrani.pozastavProgram();
                         break;
                     case "2": uzivatelskeRozhrani.vypisKolekci(databaze.vypisPojistence());
                         uzivatelskeRozhrani.pozastavProgram();
@@ -29,8 +31,5 @@ public class Main {
                     default: uzivatelskeRozhrani.vypisChybuZadani();
                     }
         }
-
-
-
     }
 }

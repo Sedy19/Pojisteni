@@ -184,6 +184,13 @@ public class UzivatelskeRozhrani {
     public void vypisPojistence (Pojistenec pojistenec) {
         System.out.println(pojistenec);
     }
+
+    /**
+     * Vypíše informaci o tom, že data byla uložena
+     */
+    public void vypisPotvrzeniUlozeniDat () {
+        System.out.print("Data byla uložena.");
+    }
     /**
      * Zastaví program dokud uživatel nestiskne Enter
      */
