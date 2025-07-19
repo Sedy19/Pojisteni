@@ -126,7 +126,7 @@ public class UzivatelskeRozhrani {
      */
     public void setTelefonniCislo () {
        while (true) {
-           System.out.println("Zadejte telefonní číslo:");
+           System.out.println("Zadejte české telefonní číslo:");
            telefonniCislo = nactiText();
            if (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo)) {
                 vypisChybuZadani();
@@ -189,7 +189,7 @@ public class UzivatelskeRozhrani {
      * Vypíše informaci o tom, že data byla uložena
      */
     public void vypisPotvrzeniUlozeniDat () {
-        System.out.print("Data byla uložena.");
+        System.out.print("\nData byla uložena.");
     }
     /**
      * Zastaví program dokud uživatel nestiskne Enter
