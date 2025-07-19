@@ -75,16 +75,13 @@ public class UzivatelskeRozhrani {
      * Setter jména zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
      */
     public void setJmeno (){
-       while (true) {
+       do {
             System.out.println("Zadejte jméno pojištěného:");
             jmeno = nactiText();
             if (!spravcePojistence.jeValidniJmeno(jmeno)) {
                 vypisChybuZadani();
             }
-            else  {
-                break;
-            }
-       }
+       } while (!spravcePojistence.jeValidniJmeno(jmeno));
     }
     /**
      * Getter jména zformátuje jméno do požadovaného tvaru
@@ -100,15 +97,13 @@ public class UzivatelskeRozhrani {
      * Setter příjmení zadaného uživatelem, zkontroluje formát zadání, případně si vyžádá nové zadání od uživatele
      */
     public void setPrijmeni () {
-        while (true) {
+        do {
             System.out.println("Zadejte příjmení pojištěného:");
             prijmeni = nactiText();
             if (!spravcePojistence.jeValidniJmeno(prijmeni)) {
                 vypisChybuZadani();
-            } else {
-                break;
             }
-        }
+        } while (!spravcePojistence.jeValidniJmeno(prijmeni));
     }
 
     /**
@@ -125,17 +120,15 @@ public class UzivatelskeRozhrani {
      * Setter telefonního čísla, zkontroluje formát telefonního čísla, případně vyžádá nové zadání
      */
     public void setTelefonniCislo () {
-       while (true) {
+       do {
            System.out.println("Zadejte české telefonní číslo:");
            telefonniCislo = nactiText();
            if (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo)) {
-                vypisChybuZadani();
+               vypisChybuZadani();
            }
-           else {
-               break;
-           }
+       } while (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo));
        }
-    }
+
 
     /**
      * Getter telefonního čísla, zformátuje číslo do požadováného formátu
@@ -151,17 +144,15 @@ public class UzivatelskeRozhrani {
      * Getter věku, zkontroluje zadání, zda je ve správném formátu, případně si vyžádá jeho opravu
      */
     public void setVek () {
-        while (true) {
+        do {
             System.out.println("Zadejte věk:");
             vek = nactiCeleCislo();
             if (!spravcePojistence.zvalidujVek(vek)) {
                 vypisChybuZadani();
             }
-            else {
-                break;
-            }
-        }
+        } while (!spravcePojistence.zvalidujVek(vek));
     }
+
 
     /**
      * Getter věku pojištěnce
