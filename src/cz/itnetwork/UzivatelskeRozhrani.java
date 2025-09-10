@@ -41,6 +41,10 @@ public class UzivatelskeRozhrani {
      * Pomocná proměnná pro načtení celého čísla
      */
     private Integer celeCislo;
+    /**
+     * Chybová hláška pro vypsání při nevalidním zadání vstupu
+     */
+    private final String chybaZadani = "\nChyba zadání, opakujte zádání ve správném formátu.\n";
 
     /**
      * Konstruktor pro předání instancí třídy Scanner a třídy Správce pojištění
@@ -49,14 +53,6 @@ public class UzivatelskeRozhrani {
     public UzivatelskeRozhrani(Scanner scanner, SpravcePojistence spravcePojistence) {
         this.scanner = scanner;
         this.spravcePojistence = spravcePojistence;
-    }
-    /**
-     * Vykreslí do konzole hlavní nabídku příkazů
-     */
-    public void vykresliNabidku (){
-        System.out.println("------------------------\nEvidence pojištěných\n------------------------\n");
-        System.out.println("Vyberte si akci:");
-        System.out.println("1 - přidat nového pojištěného\n2 - vypsat všechny pojištěné\n3 - vyhledat pojištěného\n4 - konec");
     }
     /**
      * Setter čísla zvolené akce z hlavní nabídky
@@ -76,10 +72,10 @@ public class UzivatelskeRozhrani {
      */
     public void setJmeno (){
        do {
-            System.out.println("Zadejte jméno pojištěného:");
+            vypisDoKonzole("Zadejte jméno pojištěného:");
             jmeno = nactiText();
             if (!spravcePojistence.jeValidniJmeno(jmeno)) {
-                vypisChybuZadani();
+                vypisDoKonzole(chybaZadani);
             }
        } while (!spravcePojistence.jeValidniJmeno(jmeno));
     }
@@ -98,10 +94,10 @@ public class UzivatelskeRozhrani {
      */
     public void setPrijmeni () {
         do {
-            System.out.println("Zadejte příjmení pojištěného:");
+            vypisDoKonzole("Zadejte příjmení pojištěného:");
             prijmeni = nactiText();
             if (!spravcePojistence.jeValidniJmeno(prijmeni)) {
-                vypisChybuZadani();
+                vypisDoKonzole(chybaZadani);
             }
         } while (!spravcePojistence.jeValidniJmeno(prijmeni));
     }
@@ -121,10 +117,10 @@ public class UzivatelskeRozhrani {
      */
     public void setTelefonniCislo () {
        do {
-           System.out.println("Zadejte české telefonní číslo:");
+           vypisDoKonzole("Zadejte české telefonní číslo:");
            telefonniCislo = nactiText();
            if (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo)) {
-               vypisChybuZadani();
+               vypisDoKonzole(chybaZadani);
            }
        } while (!spravcePojistence.jeValidniTelefonniCislo(telefonniCislo));
        }
@@ -139,21 +135,18 @@ public class UzivatelskeRozhrani {
         telefonniCislo = spravcePojistence.zformatujTelefonniCislo(telefonniCislo);
         return telefonniCislo;
     }
-
     /**
      * Getter věku, zkontroluje zadání, zda je ve správném formátu, případně si vyžádá jeho opravu
      */
     public void setVek () {
         do {
-            System.out.println("Zadejte věk:");
+            vypisDoKonzole("Zadejte věk:");
             vek = nactiCeleCislo();
             if (!spravcePojistence.zvalidujVek(vek)) {
-                vypisChybuZadani();
+                vypisDoKonzole(chybaZadani);
             }
         } while (!spravcePojistence.zvalidujVek(vek));
     }
-
-
     /**
      * Getter věku pojištěnce
      * @return věk pojištěnce v typu int
@@ -163,30 +156,17 @@ public class UzivatelskeRozhrani {
         return vek;
     }
     /**
-     * Vypíše chybovou hlášku při špatném zadání uživatelem a vyzve k novému zadání
-     */
-    public void vypisChybuZadani() {
-        System.out.println("Chyba zadání, opakujte zádání ve správném formátu.");
-    }
-    /**
      * Vypíše pojištěnce
      * @param pojistenec pojištěná osoba z databáze
      */
     public void vypisPojistence (Pojistenec pojistenec) {
         System.out.println(pojistenec);
     }
-
-    /**
-     * Vypíše informaci o tom, že data byla uložena
-     */
-    public void vypisPotvrzeniUlozeniDat () {
-        System.out.print("\nData byla uložena.");
-    }
     /**
      * Zastaví program dokud uživatel nestiskne Enter
      */
     public void pozastavProgram() {
-        System.out.println("\nPro pokračování stiskněte ENTER...");
+         vypisDoKonzole("\nPro pokračování stiskněte ENTER...");
         scanner.nextLine();
     }
     /**
@@ -196,8 +176,8 @@ public class UzivatelskeRozhrani {
         if (pojistenci.isEmpty()) {
             System.out.println("Databáze zatím neobsahuje žádná data.");
         } else {
-            System.out.printf("\nPočet nalezených výsledků: %d\n\n", pojistenci.size());
-            vypisHlavickuDatabaze();
+            System.out.printf("\nPočet nalezených výsledků: %d\n", pojistenci.size());
+            vypisDoKonzole("----------------------------------------------------\nJméno\t\tPříjmení\t\tVěk\t\tTelefonní číslo\n----------------------------------------------------");
             for (Pojistenec pojistenec : pojistenci) {
                 vypisPojistence(pojistenec);
             }
@@ -211,7 +191,7 @@ public class UzivatelskeRozhrani {
         try {
             vstupniText = scanner.nextLine().trim().toLowerCase();
         } catch (Exception ex) {
-            vypisChybuZadani();
+            vypisDoKonzole(chybaZadani);
         }
         return vstupniText;
     }
@@ -224,15 +204,15 @@ public class UzivatelskeRozhrani {
             celeCislo = Integer.parseInt(scanner.nextLine().trim());
         }
         catch (Exception ex) {
-            vypisChybuZadani();
+            vypisDoKonzole(chybaZadani);
         }
         return celeCislo;
     }
-
     /**
-     * Vypíše do konzole hlavičku databáze
+     * Vypíše do konzole text zadaný v parametru
+     * @param text text pro vypsání do konzole
      */
-    public void vypisHlavickuDatabaze () {
-        System.out.println("----------------------------------------------------\nJméno\t\tPříjmení\t\tVěk\t\tTelefonní číslo\n----------------------------------------------------");
+    public void vypisDoKonzole (String text) {
+        System.out.println(text);
     }
 }

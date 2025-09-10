@@ -12,11 +12,11 @@ public class Main {
         // Hlavní cyklus programu zkontroluje zadanou volbu a reaguje na ní odpovídající akcí
 
         while (!uzivatelskeRozhrani.getVolbaAkce().equals("4")) {
-                uzivatelskeRozhrani.vykresliNabidku();
+                uzivatelskeRozhrani.vypisDoKonzole("------------------------\nEvidence pojištěných\n------------------------\nVyberte si akci:\n1 - přidat nového pojištěného\n2 - vypsat všechny pojištěné\n3 - vyhledat pojištěného\n4 - konec");
                 uzivatelskeRozhrani.setVolbaAkce();
                 switch (uzivatelskeRozhrani.getVolbaAkce()) {
                     case "1": databaze.pridejPojistence();
-                        uzivatelskeRozhrani.vypisPotvrzeniUlozeniDat();
+                        uzivatelskeRozhrani.vypisDoKonzole("\nData byla uložena.");
                         uzivatelskeRozhrani.pozastavProgram();
                         break;
                     case "2": uzivatelskeRozhrani.vypisKolekci(databaze.vypisPojistence());
@@ -28,7 +28,7 @@ public class Main {
                     //Ukončí program
                     case "4":
                         break;
-                    default: uzivatelskeRozhrani.vypisChybuZadani();
+                    default: uzivatelskeRozhrani.vypisDoKonzole("Chyba zadání.");
                     }
         }
     }
